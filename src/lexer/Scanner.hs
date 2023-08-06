@@ -11,7 +11,7 @@ scanner :: String -> Either String [Token]
 scanner sourceCode = handleLexicalErrors (scanTokens sourceCode 0 []) sourceCode
 
 handleLexicalErrors :: Either LexicalError [Token] -> String -> Either String [Token]
-handleLexicalErrors (Right tokens) _ = (Right tokens) 
+handleLexicalErrors (Right tokens) _ = Right tokens
 handleLexicalErrors (Left error) source = Left (generateErrorMessage error source) 
 
 generateErrorMessage :: LexicalError -> String -> String

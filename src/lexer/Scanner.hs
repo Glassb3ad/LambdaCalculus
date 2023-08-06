@@ -16,7 +16,11 @@ handleLexicalErrors (Right tokens) _ = Right tokens
 handleLexicalErrors (Left error) source = Left (generateErrorMessage error source) 
 
 generateErrorMessage :: LexicalError -> String -> String
-generateErrorMessage (start, end) source =  "Lexical error at " ++ show start ++ ": " ++ take start source ++ "\x1b[91m" ++ substringInclusive source start end ++ "\x1b[0m" ++ drop (end+1) source
+generateErrorMessage (start, end) source =  
+  "Lexical error at " ++ show start ++ ": " 
+  ++ take start source 
+  ++ "\x1b[91m" ++ substringInclusive source start end ++ "\x1b[0m" 
+  ++ drop (end+1) source
 
 scanTokens :: String -> Int -> [Token] -> Either LexicalError [Token]
 scanTokens [] _ tokens = Right tokens

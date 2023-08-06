@@ -3,6 +3,7 @@ module Scanner
 where 
 
 import Lexeme (Lexeme, Position, LexicalError, Token(Token), scanNextLexeme)
+import Utils (substringInclusive)
 import Data.Char (isSpace)
 
 type EitherTokenError = Either LexicalError Token
@@ -15,7 +16,7 @@ handleLexicalErrors (Right tokens) _ = Right tokens
 handleLexicalErrors (Left error) source = Left (generateErrorMessage error source) 
 
 generateErrorMessage :: LexicalError -> String -> String
-generateErrorMessage _ _ = "Lexical error" --TODO generate error message
+generateErrorMessage (start, end) source =  "Lexical error at " ++ show start ++ ": " ++ take start source ++ "\x1b[91m" ++ substringInclusive source start end ++ "\x1b[0m" ++ drop (end+1) source
 
 scanTokens :: String -> Int -> [Token] -> Either LexicalError [Token]
 scanTokens [] _ tokens = Right tokens

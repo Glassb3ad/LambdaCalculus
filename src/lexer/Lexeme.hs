@@ -23,7 +23,7 @@ scanVariable ::  String -> Int -> String -> Either LexicalError Token
 scanVariable (x:xs) num res 
     | x `elem` [')', '(', 'λ'] || isSpace x = Right (Token (Variable res) (num, num + length res - 1))
     | isVariableChar x = scanVariable xs num (res ++ [x])                            
-    | otherwise = Left (num, num + length res + 1)
+    | otherwise = Left (num, num + length res)
 scanVariable [] num res = Right (Token (Variable res) (num, num + length res - 1))
 
 scanLambda :: String -> Int -> String -> Either LexicalError Token
@@ -31,7 +31,7 @@ scanLambda (x:xs) num res
     | x == '.' = Right (Token (Lambda res) (num, num + length res + 1))
     | isSpace x = Right (Token (Lambda res) (num, num + length res))
     | isVariableChar x = scanLambda xs num (res ++ [x])                            
-    | otherwise = Left (num, num + length res + 1)
+    | otherwise = Left (num, num + length res)
 scanLambda [] num res = Right (Token (Lambda res) (num, num + length res))
 
 isVariableChar :: Char -> Bool

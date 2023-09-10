@@ -13,7 +13,6 @@ utilsTest = do
               quickCheck prop_substringIsSubsequence
               quickCheck prop_substringInclusiveLength
               quickCheck prop_substringInclusiveIsSubsequence
-              putStrLn "Utils tested"
 
 prop_substringIsSubsequence :: String -> Int -> Int  -> Property
 prop_substringIsSubsequence str start end = (start >= 0 && start <= end) ==> isSubsequenceOf (substring str start end) str

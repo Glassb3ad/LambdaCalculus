@@ -38,6 +38,7 @@ library:
   source-dirs: 
     - src
     - src/lexer
+    - src/parser
 
 executables:
   LambdaCalculus-exe:

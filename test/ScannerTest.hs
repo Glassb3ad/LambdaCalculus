@@ -7,25 +7,26 @@ import Scanner (scanner, Token (Token) )
 import Lexeme (Lexeme (LeftParenthesis, RightParenthesis, Lambda, Variable), scanNextLexeme)
 
 testScanner :: IO ()
-testScanner = do 
-              putStrLn "Testing scanner..."
-              quickCheck testScanNextLexeme1
-              quickCheck testScanNextLexeme2
-              quickCheck testScanNextLexeme3
-              quickCheck testScanNextLexeme4
-              quickCheck testScanNextLexeme5
-              quickCheck testScanNextLexeme6
-
-              quickCheck testScannerSuccess1
-              quickCheck testScannerSuccess2
-              quickCheck testScannerSuccess3
-              quickCheck testScannerSuccess4
-              quickCheck testScannerSuccess5
-              quickCheck testScannerSuccess6
-
-              quickCheck testScannerFailure1
-              quickCheck testScannerFailure2
-              putStrLn "Scanner tested"
+testScanner = 
+    do 
+        putStrLn "Testing scanner..."
+        quickCheck testScanNextLexeme1
+        quickCheck testScanNextLexeme2
+        quickCheck testScanNextLexeme3
+        quickCheck testScanNextLexeme4
+        quickCheck testScanNextLexeme5
+        quickCheck testScanNextLexeme6
+        quickCheck testScannerSuccess1
+        quickCheck testScannerSuccess2
+        quickCheck testScannerSuccess3
+        quickCheck testScannerSuccess4
+        quickCheck testScannerSuccess5
+        quickCheck testScannerSuccess6
+        quickCheck testScannerSuccess7
+        quickCheck testScannerSuccess8
+        putStrLn "Testing scanner's error handling..."
+        quickCheck testScannerFailure1
+        quickCheck testScannerFailure2
 
 testScanNextLexeme1 :: Property
 testScanNextLexeme1 = scanNextLexeme "xyz" 0 === Right (Token (Variable "xyz") (0,2))
@@ -62,6 +63,12 @@ testScannerSuccess5 = scanner "λx. x (y x)" === Right [Token (Lambda "x") (0,2)
 
 testScannerSuccess6 :: Property
 testScannerSuccess6 = scanner "  x y " === Right [Token (Variable "x") (2,2), Token (Variable "y") (4,4)]
+
+testScannerSuccess7 :: Property
+testScannerSuccess7 = scanner "λx.λy.x" === Right [Token (Lambda "x") (0,2), Token (Lambda "y") (3,5), Token (Variable "x") (6,6)]
+
+testScannerSuccess8 :: Property
+testScannerSuccess8 = scanner "λxλy x" === Right [Token (Lambda "x") (0,1), Token (Lambda "y") (2,3), Token (Variable "x") (5,5)]
 
 testScannerFailure1 :: Property
 testScannerFailure1 = scanner "5" === Left "Lexical error at 0: \x1b[91m5\x1b[0m"

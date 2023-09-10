@@ -29,11 +29,15 @@ library
       Utils
       Lexeme
       Scanner
+      Grammar
+      Parser
+      ParserError
   other-modules:
       Paths_LambdaCalculus
   hs-source-dirs:
       src
       src/lexer
+      src/parser
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       QuickCheck
@@ -57,6 +61,7 @@ test-suite LambdaCalculus-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      ParserTest
       ScannerTest
       UtilsTest
       Paths_LambdaCalculus

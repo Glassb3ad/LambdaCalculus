@@ -32,16 +32,19 @@ library
       Grammar
       Parser
       ParserError
+      AlphaTransformer
   other-modules:
       Paths_LambdaCalculus
   hs-source-dirs:
       src
       src/lexer
       src/parser
+      src/alpha_transformer
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       QuickCheck
     , base >=4.7 && <5
+    , containers
   default-language: Haskell2010
 
 executable LambdaCalculus-exe
@@ -55,12 +58,14 @@ executable LambdaCalculus-exe
       LambdaCalculus
     , QuickCheck
     , base >=4.7 && <5
+    , containers
   default-language: Haskell2010
 
 test-suite LambdaCalculus-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      AlphaTransformerTest
       ParserTest
       ScannerTest
       UtilsTest
@@ -72,4 +77,5 @@ test-suite LambdaCalculus-test
       LambdaCalculus
     , QuickCheck
     , base >=4.7 && <5
+    , containers
   default-language: Haskell2010

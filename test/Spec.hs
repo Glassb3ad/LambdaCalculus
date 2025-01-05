@@ -1,6 +1,7 @@
 import ScannerTest (testScanner)
 import UtilsTest (utilsTest)
 import ParserTest (testParser)
+import AlphaTransformerTest (testAlphaTransformer)
 
 main :: IO ()
 main = do 
@@ -14,4 +15,7 @@ main = do
         putStrLn "Running parser tests"
         testParser
         putStrLn "Finished parser tests"
+        putStrLn "Testing alpha conversion"
+        testAlphaTransformer
+        putStrLn "Finished testing alpha conversion"
 

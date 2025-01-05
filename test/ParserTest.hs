@@ -112,6 +112,7 @@ parserSuccess4 = parse [Token LeftParenthesis (0,0), Token (Lambda "x") (1,1), T
                                     )
                                 ))           
                              (App'
+                             
                                 (Grammar.Var (Lexeme.Variable "x"))
                                 EMPTY
                              )

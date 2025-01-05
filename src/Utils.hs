@@ -1,5 +1,11 @@
 module Utils 
-(substring, substringInclusive, join, colorSubstringWithRed)
+(substring,
+substringInclusive,
+join,
+colorSubstringWithRed,
+tripleFst,
+tripleSnd,
+tripleThrd)
 where 
 
 substring :: String -> Int -> Int -> String
@@ -13,3 +19,12 @@ colorSubstringWithRed start end str = take start str  ++ "\x1b[91m" ++ substring
 
 join :: [String] -> String
 join = foldl (++) ""
+
+tripleFst :: (a, b, c) -> a
+tripleFst (a, _, _) = a
+
+tripleSnd :: (a, b, c) -> b
+tripleSnd (_, b, _) = b
+
+tripleThrd :: (a, b, c) -> c
+tripleThrd (_, _, c) = c

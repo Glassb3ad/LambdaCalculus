@@ -22,6 +22,8 @@ description:         Please see the README on GitHub at <https://github.com/gith
 dependencies:
 - base >= 4.7 && < 5
 - QuickCheck
+- containers
+
 
 ghc-options:
 - -Wall
@@ -39,6 +41,7 @@ library:
     - src
     - src/lexer
     - src/parser
+    - src/alpha_transformer
 
 executables:
   LambdaCalculus-exe:
